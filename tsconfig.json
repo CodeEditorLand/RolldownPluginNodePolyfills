@@ -1,15 +1,15 @@
 {
-  "compilerOptions": {
-    "outDir": "dist",
-    "strict": true,
-    "moduleResolution": "node",
-    "module": "ES2020",
-    "target": "es2018",
-    "declaration": true,
-    "declarationDir": "dist",
-    "isolatedModules": true,
-    "isolatedDeclarations": true,
-    "emitDeclarationOnly": true
-  },
-  "include": ["src"]
+	"compilerOptions": {
+		"outDir": "dist",
+		"strict": true,
+		"moduleResolution": "node",
+		"module": "ES2020",
+		"target": "es2018",
+		"declaration": true,
+		"declarationDir": "dist",
+		"isolatedModules": true,
+		"isolatedDeclarations": true,
+		"emitDeclarationOnly": true
+	},
+	"include": ["src"]
 }
