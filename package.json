@@ -1,19 +1,38 @@
 {
-	"description": "node polyfills for Rolldown",
-	"devDependencies": {
-		"@types/node": "22.5.4",
-		"rolldown": "canary"
-	},
-	"files": [
-		"dist/index.cjs",
-		"dist/index.d.ts"
-	],
-	"main": "dist/index.cjs",
-	"name": "@rolldown/plugin-node-polyfills",
-	"scripts": {
-		"build": "node scripts/build.js && tsc -p . && rolldown -c rolldown.config.mjs",
-		"prebuild": "rm -rf dist",
-		"prepublishOnly": "npm build"
-	},
-	"types": "dist/index.d.ts"
+  "name": "@rolldown/plugin-node-polyfills",
+  "version": "1.0.0",
+  "description": "node polyfills for Rolldown",
+  "main": "dist/index.cjs",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist/index.cjs",
+    "dist/index.d.ts"
+  ],
+  "scripts": {
+    "test": "vitest --run",
+    "prebuild": "rm -rf dist",
+    "build": "node scripts/build.js && tsc -p . && rolldown -c rolldown.config.mjs",
+    "prepublishOnly": "npm build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolldown/rolldown-plugin-node-polyfills.git"
+  },
+  "keywords": [
+    "rolldown"
+  ],
+  "author": "Evan You",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rolldown/rolldown-plugin-node-polyfills/issues"
+  },
+  "homepage": "https://github.com/rolldown/rolldown-plugin-node-polyfills#readme",
+  "packageManager": "pnpm@9.7.0",
+  "devDependencies": {
+    "@types/node": "^22.2.0",
+    "rolldown": "canary",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
+  }
 }
