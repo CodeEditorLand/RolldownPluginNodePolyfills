@@ -1,19 +1,19 @@
 {
-	"name": "@rolldown/plugin-node-polyfills",
 	"description": "node polyfills for Rolldown",
-	"main": "dist/index.cjs",
-	"types": "dist/index.d.ts",
+	"devDependencies": {
+		"@types/node": "22.7.5",
+		"rolldown": "canary"
+	},
 	"files": [
 		"dist/index.cjs",
 		"dist/index.d.ts"
 	],
+	"main": "dist/index.cjs",
+	"name": "@rolldown/plugin-node-polyfills",
 	"scripts": {
-		"prebuild": "rm -rf dist",
 		"build": "node scripts/build.js && tsc -p . && rolldown -c rolldown.config.mjs",
+		"prebuild": "rm -rf dist",
 		"prepublishOnly": "npm build"
 	},
-	"devDependencies": {
-		"@types/node": "22.7.5",
-		"rolldown": "canary"
-	}
+	"types": "dist/index.d.ts"
 }
