@@ -1,7 +1,7 @@
 {
 	"description": "node polyfills for Rolldown",
 	"devDependencies": {
-		"@types/node": "22.7.6",
+		"@types/node": "22.7.7",
 		"rolldown": "canary"
 	},
 	"files": [
