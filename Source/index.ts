@@ -9,9 +9,11 @@ import POLYFILLS from "./polyfills";
 const { dirname, relative, join } = posix;
 
 const PREFIX = `\0polyfill-node.`;
+
 const PREFIX_LENGTH = PREFIX.length;
 
 const DIRNAME_PATH = "\0node-polyfills:dirname";
+
 const FILENAME_PATH = "\0node-polyfills:filename";
 
 export interface NodePolyfillsOptions {
@@ -20,7 +22,9 @@ export interface NodePolyfillsOptions {
 
 export default function (opts: NodePolyfillsOptions = {}): Plugin {
 	const basedir = opts.baseDir || "/";
+
 	const dirs = new Map<string, string>();
+
 	return {
 		name: "polyfill-node",
 		options(options) {
@@ -44,11 +48,13 @@ export default function (opts: NodePolyfillsOptions = {}): Plugin {
 			if (importee === DIRNAME_PATH) {
 				const id = getRandomId();
 				dirs.set(id, dirname("/" + relative(basedir, importer!)));
+
 				return { id, moduleSideEffects: false };
 			}
 			if (importee === FILENAME_PATH) {
 				const id = getRandomId();
 				dirs.set(id, dirname("/" + relative(basedir, importer!)));
+
 				return { id, moduleSideEffects: false };
 			}
 			if (importee && importee.slice(-1) === "/") {
@@ -88,6 +94,7 @@ export default function (opts: NodePolyfillsOptions = {}): Plugin {
 			}
 			if (id.startsWith(PREFIX)) {
 				const importee = id.substr(PREFIX_LENGTH).replace(".js", "");
+
 				return (
 					mods.get(importee) || (POLYFILLS as any)[importee + ".js"]
 				);
