@@ -45,21 +45,27 @@ export default function (opts: NodePolyfillsOptions = {}): Plugin {
 			if (importee[0] == "\0" && /\?commonjs-\w+$/.test(importee)) {
 				importee = importee.slice(1).replace(/\?commonjs-\w+$/, "");
 			}
+
 			if (importee === DIRNAME_PATH) {
 				const id = getRandomId();
+
 				dirs.set(id, dirname("/" + relative(basedir, importer!)));
 
 				return { id, moduleSideEffects: false };
 			}
+
 			if (importee === FILENAME_PATH) {
 				const id = getRandomId();
+
 				dirs.set(id, dirname("/" + relative(basedir, importer!)));
 
 				return { id, moduleSideEffects: false };
 			}
+
 			if (importee && importee.slice(-1) === "/") {
 				importee = importee.slice(0, -1);
 			}
+
 			if (
 				importer &&
 				importer.startsWith(PREFIX) &&
@@ -74,9 +80,11 @@ export default function (opts: NodePolyfillsOptions = {}): Plugin {
 					) +
 					".js";
 			}
+
 			if (importee.startsWith(PREFIX)) {
 				importee = importee.substr(PREFIX_LENGTH);
 			}
+
 			if (
 				mods.has(importee) ||
 				(POLYFILLS as any)[importee.replace(".js", "") + ".js"]
@@ -86,12 +94,14 @@ export default function (opts: NodePolyfillsOptions = {}): Plugin {
 					moduleSideEffects: false,
 				};
 			}
+
 			return null;
 		},
 		load(id: string) {
 			if (dirs.has(id)) {
 				return `export default '${dirs.get(id)}'`;
 			}
+
 			if (id.startsWith(PREFIX)) {
 				const importee = id.substr(PREFIX_LENGTH).replace(".js", "");
 
