@@ -1,28 +1,6 @@
 {
 	"name": "@codeeditorland/plugin-node-polyfills",
-	"version": "0.0.1",
-	"private": false,
 	"description": "node polyfills for Rolldown",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/RolldownPluginNodePolyfills#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/RolldownPluginNodePolyfills/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/RolldownPluginNodePolyfills.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
 	"main": "dist/index.cjs",
 	"types": "dist/index.d.ts",
 	"files": [
@@ -39,8 +17,5 @@
 		"@playform/build": "0.2.3",
 		"@types/node": "22.15.2",
 		"rolldown": "canary"
-	},
-	"publishConfig": {
-		"access": "public"
 	}
 }
