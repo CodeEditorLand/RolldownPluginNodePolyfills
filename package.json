@@ -1,46 +1,38 @@
 {
-	"name": "@codeeditorland/plugin-node-polyfills",
-	"version": "0.0.1",
-	"private": false,
-	"description": "node polyfills for Rolldown",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/RolldownPluginNodePolyfills#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/RolldownPluginNodePolyfills/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/RolldownPluginNodePolyfills.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"main": "dist/index.cjs",
-	"types": "dist/index.d.ts",
-	"files": [
-		"dist/index.cjs",
-		"dist/index.d.ts"
-	],
-	"scripts": {
-		"prebuild": "rm -rf dist",
-		"build": "node scripts/build.js && tsc -p . && rolldown -c rolldown.config.mjs",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"@playform/build": "0.2.3",
-		"@types/node": "22.15.3",
-		"rolldown": "canary"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "@rolldown/plugin-node-polyfills",
+  "version": "1.0.0",
+  "description": "node polyfills for Rolldown",
+  "main": "dist/index.cjs",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist/index.cjs",
+    "dist/index.d.ts"
+  ],
+  "scripts": {
+    "test": "vitest --run",
+    "prebuild": "rm -rf dist",
+    "build": "node scripts/build.js && tsc -p . && rolldown -c rolldown.config.mjs",
+    "prepublishOnly": "npm build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolldown/rolldown-plugin-node-polyfills.git"
+  },
+  "keywords": [
+    "rolldown"
+  ],
+  "author": "Evan You",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rolldown/rolldown-plugin-node-polyfills/issues"
+  },
+  "homepage": "https://github.com/rolldown/rolldown-plugin-node-polyfills#readme",
+  "packageManager": "pnpm@9.7.0",
+  "devDependencies": {
+    "@types/node": "^22.2.0",
+    "rolldown": "canary",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
+  }
 }

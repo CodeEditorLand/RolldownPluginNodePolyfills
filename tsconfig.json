@@ -1,24 +1,15 @@
 {
-	"compilerOptions": {
-		"baseUrl": "./",
-		"declaration": true,
-		"declarationDir": "dist",
-		"emitDeclarationOnly": true,
-		"isolatedDeclarations": true,
-		"isolatedModules": true,
-		"module": "ES2020",
-		"moduleResolution": "node",
-		"outDir": "Target",
-		"rootDir": "src",
-		"strict": true,
-		"target": "es2018"
-	},
-	"extends": "@playform/build/tsconfig",
-	"include": [
-		"src",
-		"src",
-		"src",
-		"src",
-		"src"
-	]
+  "compilerOptions": {
+    "outDir": "dist",
+    "strict": true,
+    "moduleResolution": "node",
+    "module": "ES2020",
+    "target": "es2018",
+    "declaration": true,
+    "declarationDir": "dist",
+    "isolatedModules": true,
+    "isolatedDeclarations": true,
+    "emitDeclarationOnly": true
+  },
+  "include": ["src"]
 }

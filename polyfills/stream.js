@@ -1,11 +1,11 @@
-import EE from "events";
-import { inherits } from "util";
-import { Duplex } from "\0polyfill-node._stream_duplex";
-import { PassThrough } from "\0polyfill-node._stream_passthrough";
-import { Readable } from "\0polyfill-node._stream_readable";
-import { Transform } from "\0polyfill-node._stream_transform";
-import { Writable } from "\0polyfill-node._stream_writable";
+import EE from 'events';
+import {inherits} from 'util';
 
+import {Duplex} from '\0polyfill-node._stream_duplex';
+import {Readable} from '\0polyfill-node._stream_readable';
+import {Writable} from '\0polyfill-node._stream_writable';
+import {Transform} from '\0polyfill-node._stream_transform';
+import {PassThrough} from '\0polyfill-node._stream_passthrough';
 inherits(Stream, EE);
 Stream.Readable = Readable;
 Stream.Writable = Writable;
@@ -17,93 +17,94 @@ Stream.PassThrough = PassThrough;
 Stream.Stream = Stream;
 
 export default Stream;
-export { Readable, Writable, Duplex, Transform, PassThrough, Stream };
+export {Readable,Writable,Duplex,Transform,PassThrough,Stream}
 
 // old-style streams.  Note that the pipe method (the only relevant
 // part of this class) is overridden in the Readable class.
 
 function Stream() {
-	EE.call(this);
+  EE.call(this);
 }
 
-Stream.prototype.pipe = function (dest, options) {
-	var source = this;
+Stream.prototype.pipe = function(dest, options) {
+  var source = this;
 
-	function ondata(chunk) {
-		if (dest.writable) {
-			if (false === dest.write(chunk) && source.pause) {
-				source.pause();
-			}
-		}
-	}
+  function ondata(chunk) {
+    if (dest.writable) {
+      if (false === dest.write(chunk) && source.pause) {
+        source.pause();
+      }
+    }
+  }
 
-	source.on("data", ondata);
+  source.on('data', ondata);
 
-	function ondrain() {
-		if (source.readable && source.resume) {
-			source.resume();
-		}
-	}
+  function ondrain() {
+    if (source.readable && source.resume) {
+      source.resume();
+    }
+  }
 
-	dest.on("drain", ondrain);
+  dest.on('drain', ondrain);
 
-	// If the 'end' option is not supplied, dest.end() will be called when
-	// source gets the 'end' or 'close' events.  Only dest.end() once.
-	if (!dest._isStdio && (!options || options.end !== false)) {
-		source.on("end", onend);
-		source.on("close", onclose);
-	}
+  // If the 'end' option is not supplied, dest.end() will be called when
+  // source gets the 'end' or 'close' events.  Only dest.end() once.
+  if (!dest._isStdio && (!options || options.end !== false)) {
+    source.on('end', onend);
+    source.on('close', onclose);
+  }
 
-	var didOnEnd = false;
-	function onend() {
-		if (didOnEnd) return;
-		didOnEnd = true;
+  var didOnEnd = false;
+  function onend() {
+    if (didOnEnd) return;
+    didOnEnd = true;
 
-		dest.end();
-	}
+    dest.end();
+  }
 
-	function onclose() {
-		if (didOnEnd) return;
-		didOnEnd = true;
 
-		if (typeof dest.destroy === "function") dest.destroy();
-	}
+  function onclose() {
+    if (didOnEnd) return;
+    didOnEnd = true;
 
-	// don't leave dangling pipes when there are errors.
-	function onerror(er) {
-		cleanup();
-		if (EE.listenerCount(this, "error") === 0) {
-			throw er; // Unhandled stream error in pipe.
-		}
-	}
+    if (typeof dest.destroy === 'function') dest.destroy();
+  }
 
-	source.on("error", onerror);
-	dest.on("error", onerror);
+  // don't leave dangling pipes when there are errors.
+  function onerror(er) {
+    cleanup();
+    if (EE.listenerCount(this, 'error') === 0) {
+      throw er; // Unhandled stream error in pipe.
+    }
+  }
 
-	// remove all the event listeners that were added.
-	function cleanup() {
-		source.removeListener("data", ondata);
-		dest.removeListener("drain", ondrain);
+  source.on('error', onerror);
+  dest.on('error', onerror);
 
-		source.removeListener("end", onend);
-		source.removeListener("close", onclose);
+  // remove all the event listeners that were added.
+  function cleanup() {
+    source.removeListener('data', ondata);
+    dest.removeListener('drain', ondrain);
 
-		source.removeListener("error", onerror);
-		dest.removeListener("error", onerror);
+    source.removeListener('end', onend);
+    source.removeListener('close', onclose);
 
-		source.removeListener("end", cleanup);
-		source.removeListener("close", cleanup);
+    source.removeListener('error', onerror);
+    dest.removeListener('error', onerror);
 
-		dest.removeListener("close", cleanup);
-	}
+    source.removeListener('end', cleanup);
+    source.removeListener('close', cleanup);
 
-	source.on("end", cleanup);
-	source.on("close", cleanup);
+    dest.removeListener('close', cleanup);
+  }
 
-	dest.on("close", cleanup);
+  source.on('end', cleanup);
+  source.on('close', cleanup);
 
-	dest.emit("pipe", source);
+  dest.on('close', cleanup);
 
-	// Allow for unix-like usage: A.pipe(B).pipe(C)
-	return dest;
+  dest.emit('pipe', source);
+
+  // Allow for unix-like usage: A.pipe(B).pipe(C)
+  return dest;
 };
