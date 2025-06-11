@@ -30,9 +30,9 @@
   "homepage": "https://github.com/rolldown/rolldown-plugin-node-polyfills#readme",
   "packageManager": "pnpm@9.7.0",
   "devDependencies": {
-    "@types/node": "^22.15.30",
+    "@types/node": "^24.0.0",
     "rolldown": "canary",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.2"
+    "vitest": "^3.2.3"
   }
 }
