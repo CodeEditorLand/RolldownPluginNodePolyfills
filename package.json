@@ -33,6 +33,6 @@
     "@types/node": "^24.0.0",
     "rolldown": "canary",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.3"
+    "vitest": "^4.1.8"
   }
 }
